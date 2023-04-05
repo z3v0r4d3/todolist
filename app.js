@@ -11,12 +11,12 @@ mongoose.set('strictQuery', false);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+dotenv.config();
 
 main().catch(err => console.log(err));
 async function main() {
-  dotenv.config();
-  const url = process.env.MONGOATLAS_URI;
-  await mongoose.connect(url, {
+
+  await mongoose.connect(process.env.MONGOATLAS_URI, {
     useNewUrlParser: true
   });
   console.log("Connected to mongoose.")
